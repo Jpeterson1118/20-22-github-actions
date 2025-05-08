@@ -4,6 +4,8 @@ import Calculator from '../components/Calculator';
 
 // comment
 // comment 2
+// comment 3
+
 describe('Calculator', () => {
   it('should contain the expected text', () => {
     render(<Calculator />);
