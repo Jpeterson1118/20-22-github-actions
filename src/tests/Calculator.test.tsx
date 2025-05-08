@@ -2,6 +2,7 @@ import pretty from 'pretty';
 import { render } from '@testing-library/react';
 import Calculator from '../components/Calculator';
 
+// comment
 describe('Calculator', () => {
   it('should contain the expected text', () => {
     render(<Calculator />);
