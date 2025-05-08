@@ -1,25 +1,26 @@
-version: 2.1
+name: Lint Workflow
 
-orbs:
-  cypress: cypress-io/cypress@3.3.1
+on:
+  pull_request:
+    branches:
+      - develop
+      - staging
 
 jobs:
-  start-server:
-    docker:
-      - image: cypress/base:latest
-    steps:
-    - checkout
-    - run:
-      name: install dependencies
-      command: npm install
-    - run:
-      name: build app
-      command: npm run build
+  test:
+    runs-on: ubuntu-latest
 
-workflows:
-  run-tests: 
-    jobs:
-    - start-server
-    - cypress/run:
-      name: run-component-tests
-      cypress-command: npx cypress run --component
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 21.x
+
+      - name: 🧰 Install Deps
+        run: npm install
+
+      - name: run lint
+        run: npm run lint
